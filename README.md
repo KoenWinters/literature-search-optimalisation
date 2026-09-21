@@ -1,6 +1,6 @@
 A local retrieval-augmented generation (RAG) pipeline for searching a personal collection of documents. Everything runs locally.
 
-I had a large collection of papers which I used for my literature review on FFF process parameters, due to the complexity of these process parameters, and the difficulty
+I had a large collection of papers which I used for my literature review, due to the complexity of the matter, and the difficulty
 of drawing conclusions from many papers with contradicting results I decided to use this method. 
 
 How it works:
@@ -29,25 +29,20 @@ Setup: pip install -r requirements.txt
 Install Ollama and pull a model: ollama pull llama3.2
 Put your PDFs in docs/, then build the index: python index.py
 
-Usage: python search.py "how does nozzle temperature affect layer adhesion?"
+Usage: python search.py "how does temperature affect the properties?"
 
 Example output: 10747 chunks from 30 files
 
-Question: how does nozzle temperature affect layer adhesion?
+Question: how does temperature affect the properties?
 
 1. score 0.593  [<paper>.pdf]
-   Increasing nozzle temperature reduces material viscosity, improving layer
-   adhesion and preventing under-extrusion, though also increases the risk of
-   over-extrusion...
+   ......
 
 2. score 0.555  [<paper>.pdf]
-   Decreasing nozzle temperature increases viscosity, potentially leading to
-   under-extrusion introducing voids, reducing interlayer bonding...
+   .......
 
 Answer:
-Higher nozzle temperature lowers viscosity, which improves adhesion between
-layers [1], while lower temperature raises viscosity and can introduce voids
-and weaker interlayer bonding [2]. ...
+Higher temperature results in...[1], while lower temperature has an effect on [2]. ...
 
 The prompt instructs the model to answer only from the supplied fragments and to say so when the answer is not there. That constraint matters more than model size: without it, a small model happily fills gaps from its own training data, which defeats the purpose of grounding answers in the corpus.
 
